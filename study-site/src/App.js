@@ -69,7 +69,7 @@ function VideoCard({ video }) {
 // --- 這裡就是你的環境偵測雷達 ---
 const API_BASE = window.location.hostname === "localhost" 
   ? "http://127.0.0.1:5000"  // 如果你在自己電腦跑，抓這裡
-  : "https://your-backend-name.onrender.com"; // 上架後，Render 會給你一個網址，到時候回來填這
+  : "https://high-school-resource-hub.onrender.com"; // 上架後，Render 會給你一個網址，已填
 export default function App() {
   const [data, setData] = useState({}); 
   const [menu, setMenu] = useState("使用教學");
