@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { inject } from '@vercel/analytics';
 
+inject(); // 這行會啟動統計功能
 function CommentBox({ text }) {
   return (
     <div style={{ padding: "15px 20px", backgroundColor: "#fff", borderRadius: "15px", borderLeft: "5px solid #2563eb", marginBottom: "10px", boxShadow: "0 2px 8px rgba(0,0,0,0.05)", fontSize: "15px", color: "#334155" }}>
