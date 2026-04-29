@@ -63,7 +63,7 @@ function VideoCard({ video }) {
         boxShadow: isHovered ? "0 8px 20px rgba(37, 99, 235, 0.3)" : "none",
         transition: "0.3s"
       }}>
-        🚀 進入頻道學習
+        進入頻道學習
       </a>
     </div>
   );
@@ -170,7 +170,7 @@ export default function App() {
 
           <p style={{ color: "#64748b", marginTop: "15px", fontSize: "1.2rem", fontWeight: "600", fontStyle: "italic" }}>
 
-            「我們不產知識，我們只是優質老師的搬運工。拯救你的數理，從這裡開始。」
+            知識就是力量--by 培根與薯條。
 
           </p>
 
