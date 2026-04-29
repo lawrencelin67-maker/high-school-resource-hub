@@ -98,13 +98,6 @@ def update_subs_worker():
 # 啟動時更新一次
 threading.Thread(target=update_subs_worker).start()
 
-# --- 3. 網站教學文案 ---
-instruction = [
-    "🚀 歡迎來到高中數理科學習資源網！這是一個專為高中生打造的一站式資源導航，幫助您尋找數學、物理、化學等最優質的<b>免費資源</b>。",
-    "📚 點擊上方的<b>「學習資源」</b>按鈕並選擇科目，按下<b>「進入頻道學習」</b>，即可查看 YouTube 頻道  與網站等 <b>免費資源</b>。",
-    "💬 如果你有推薦的老師或資源，歡迎到<b>「許願回饋」</b>區留言，我們誠摯歡迎您寶貴的意見！",
-    "✨ 願這個小站能成為你數理學習路上的最強助手！"
-]
 
 @app.route('/api/resources', methods=['GET'])
 def get_resources():
@@ -117,9 +110,7 @@ def get_resources():
             output[cat].append(new_item)
     return Response(json.dumps(output, ensure_ascii=False), mimetype='application/json')
 
-@app.route('/api/instruction', methods=['GET'])
-def get_instruction():
-    return Response(json.dumps(instruction, ensure_ascii=False), mimetype='application/json')
+
 
 @app.route('/api/comments', methods=['GET', 'POST'])
 def handle_comments():

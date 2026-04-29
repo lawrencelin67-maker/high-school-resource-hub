@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { inject } from '@vercel/analytics';
+import { PiCompassRoseFill, PiRocketLaunchFill, PiCursorClickFill, PiChatCenteredTextFill, PiMagicWandFill } from "react-icons/pi";
 
 inject(); // 這行會啟動統計功能
 function CommentBox({ text }) {
@@ -80,18 +81,22 @@ export default function App() {
   const [input, setInput] = useState("");
   const [instruction, setInstruction] = useState([]); 
   const [loading, setLoading] = useState(true);
-  
+  const instruction = [
+    { icon: <PiRocketLaunchFill color="#ef4444" />, text: "歡迎來到高中數理科學學習資源網！這是一個專為高中生打造的一站式資源導航，幫助您尋找數學、物理、化學等最優質的免費資源。" },
+    { icon: <PiCursorClickFill color="#3b82f6" />, text: "點擊上方的「學習資源」按鈕並選擇科目，按下「進入頻道學習」，即可查看 YouTube 頻道與網站等免費資源。" },
+    { icon: <PiChatCenteredTextFill color="#8b5cf6" />, text: "如果你有推薦的老師或資源，歡迎到「許願回饋」區留言，我們誠摯歡迎您寶貴的意見！" },
+    { icon: <PiMagicWandFill color="#f59e0b" />, text: "願這個小站能成為你數理學習路上的最強助手！" }
+  ];
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [resRes, resCom, resIns] = await Promise.all([
+        const [resRes, resCom] = await Promise.all([
           fetch(`${API_BASE}/api/resources`),
-          fetch(`${API_BASE}/api/comments`),
-          fetch(`${API_BASE}/api/instruction`)
+          fetch(`${API_BASE}/api/comments`)
         ]);
         setData(await resRes.json());
         setComments((await resCom.json()).reverse().slice(0, 30));
-        setInstruction(await resIns.json());
+        // 刪掉 setInstruction 那行，因為我們現在不用抓了
         setLoading(false);
       } catch (err) {
         setLoading(false);
@@ -168,9 +173,9 @@ export default function App() {
 
           </h1>
 
-          <p style={{ color: "#64748b", marginTop: "15px", fontSize: "1.2rem", fontWeight: "600", fontStyle: "italic" }}>
+          <p style={{ color: "#648b7a", marginTop: "15px", fontSize: "1.2rem", fontWeight: "600", fontStyle: "italic" }}>
 
-            知識就是力量--by 培根與薯條。
+            知識就是力量--by 培根與薯條XDXD。
 
           </p>
 
@@ -251,10 +256,13 @@ export default function App() {
 
         {menu === "使用教學" && (
           <div style={{ backgroundColor: "rgba(255, 255, 255, 0.8)", padding: "40px", borderRadius: "25px", boxShadow: "0 10px 30px rgba(0,0,0,0.05)", lineHeight: "2.2", color: "#334155" }}>
-            <h2 style={{ color: "#2563eb", marginBottom: "25px", textAlign: "center" }}>💡 探險指南</h2>
-            {instruction.map((line, index) => (
-              <p key={index} style={{ fontSize: "18px", fontWeight: "500", marginBottom: "15px", borderBottom: "1px dashed #e2e8f0", paddingBottom: "10px" }}>
-                <span dangerouslySetInnerHTML={{ __html: line }} />
+            <h2 style={{ color: "#2563eb", marginBottom: "25px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
+              <PiCompassRoseFill size={32} /> 探險指南
+            </h2>
+            {instruction.map((item, index) => (
+              <p key={index} style={{ fontSize: "18px", fontWeight: "500", marginBottom: "15px", borderBottom: "1px dashed #e2e8f0", paddingBottom: "10px", display: "flex", alignItems: "center", gap: "12px" }}>
+                {item.icon}
+                <span>{item.text}</span>
               </p>
             ))}
           </div>
