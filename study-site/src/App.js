@@ -79,7 +79,6 @@ export default function App() {
   const [subject, setSubject] = useState("數學");
   const [comments, setComments] = useState([]);
   const [input, setInput] = useState("");
-  const [instruction, setInstruction] = useState([]); 
   const [loading, setLoading] = useState(true);
   const instruction = [
     { icon: <PiRocketLaunchFill color="#ef4444" />, text: "歡迎來到高中數理科學學習資源網！這是一個專為高中生打造的一站式資源導航，幫助您尋找數學、物理、化學等最優質的免費資源。" },
